@@ -1,0 +1,244 @@
+\usepackage{longtable}
+\usepackage[LGR,T1]{fontenc}
+\usepackage{lscape}
+%\usepackage{pdfsync}
+\usepackage{multirow}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{afterpage}
+\usepackage{lettrine}
+\usepackage{color,soul}
+\usepackage[svgnames]{xcolor}
+\usepackage{colortbl}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{eurosym}
+
+
+%Palatino font
+%\usepackage{pxfonts}
+%\usepackage{libertine}
+\usepackage[scaled=0.88]{beraserif}
+\usepackage[scaled=0.85]{berasans}
+\usepackage[scaled=0.84]{beramono}
+\usepackage{mathpazo}
+%\linespread{1.05}
+\usepackage[T1,small,euler-digits]{eulervm}
+
+\usepackage[nomessages]{fp}
+
+
+\definecolor{bleuUCLclair}{rgb}{.09, 0.569, 1}
+\definecolor{bleuUCLfonce}{rgb}{ .13, .52, .86}
+\definecolor{redBurn}{rgb}{.91, 0.29, 0.08}
+
+\usepackage[colorlinks=true,urlcolor=LightSeaGreen,linkcolor=black]{hyperref}
+\addtolength{\topmargin}{-1.5cm}
+\addtolength{\textheight}{1.5cm}
+\addtolength{\textwidth}{2cm}
+\addtolength{\footskip}{2cm}
+\setlength{\evensidemargin}{-0.5cm}
+\setlength{\oddsidemargin}{-0.5cm}
+\setlength{\arrayrulewidth}{0.25pt}
+
+\renewcommand{\baselinestretch}{1.1} % Interligne
+
+
+\newenvironment{maliste}%
+{ \begin{list}%
+		{\textcolor{bleuUCLfonce}{$\bullet$}\hspace{0.5cm}}%
+		{\setlength{\labelwidth}{50pt}%
+			\setlength{\leftmargin}{25pt}%
+			\setlength{\itemsep}{30pt}}}%
+	{ \end{list} }
+
+%\renewcommand{\headrulewidth}{0.0pt}
+%\newcommand{\clearemptydoublepage}{%
+	%	\newpage{\pagestyle{empty}\cleardoublepage}}
+
+
+
+
+%section like title in longtable
+\newcommand{\seclong}[1]{\multicolumn{2}{@{}l}{{\Large\sffamily #1}} 
+	\vspace{0.5cm}
+	\\}
+
+%enumerate on two columns
+\newcounter{listlong}
+\newcommand{\newlistlong}{\setcounter{listlong}{1}}
+\newcommand{\iteml}[1]{%
+	\hspace{4.5cm}\textcolor{redBurn}{\arabic{listlong}}\stepcounter{listlong}%
+	&%
+	#1%
+	
+	\\%
+}
+
+%left in column
+\newcommand{\lcol}[1]{%
+	\begin{minipage}[t]{.35\textwidth}%
+		
+		#1%
+		
+	\end{minipage}%
+}
+
+\title{\vspace{-1cm}
+	\begin{flushleft} {\sffamily \emph{Paper title}: reply to reviewers }\end{flushleft}}
+\date{\vspace{-1.7cm}\begin{flushleft}\sffamily Paper authors\end{flushleft}}
+
+
+\pagestyle{fancy} 
+\fancyhf{}
+\fancyfoot[R]{\sffamily\thepage\ / \pageref{LastPage}}
+\fancyfoot[L]{ }
+
+\fancypagestyle{plain}{%
+	\fancyhf{}%
+	\fancyfoot[R]{\sffamily\thepage\ / \pageref{LastPage}}
+	\fancyfoot[L]{ }
+}
+
+\renewcommand{\headrulewidth}{0.0pt}
+
+
+\newcommand{\hlc}[2][yellow]{ {\sethlcolor{#1} \hl{$^{TODO:}$#2}} }
+
+\newcommand{\paolo}[2][green]{ {\sethlcolor{#1} \hl{$^{P:}$#2}} }
+
+
+\titleformat{\section}
+{\bfseries\scshape}{Reviewer \# \thesection}{1em}{}
+
+\titleformat{\subsection}
+{\normalfont\scshape}{Comment \# \thesubsection}{1em}{}
+
+\usepackage[framemethod=default]{mdframed}
+%\mdfsetup{skipabove=\topskip,skipbelow=\topskip}
+
+\global\mdfdefinestyle{comment}{%
+	linecolor=FireBrick!50,linewidth=0.1cm,backgroundcolor=FireBrick!5,%
+	leftmargin=-0.5cm,rightmargin=-0.5cm, innerleftmargin=0.4cm,innerrightmargin=0.4cm,
+	topline=false,bottomline=false
+}
+
+\global\mdfdefinestyle{changes}{%
+	linecolor=DarkSeaGreen!10,linewidth=0.05cm,backgroundcolor=DarkSeaGreen!10,%
+	leftmargin=-0.1cm,rightmargin=-0.1cm, innerleftmargin=0.1cm,innerrightmargin=0.1cm,
+	topline=false,bottomline=false
+}
+
+\global\mdfdefinestyle{replies}{%
+	linecolor=DodgerBlue!10,linewidth=0.05cm,backgroundcolor=DodgerBlue!1,%
+	leftmargin=-0.1cm,rightmargin=-0.1cm, innerleftmargin=0.1cm,innerrightmargin=0.1cm,
+	rightline=false,leftline=false
+}
+
+\renewcommand{\subsectionautorefname}{Comment}
+
+\newcommand{\comment}[1]{\subsection{}
+	\begin{mdframed}[style=comment] 
+		\textit{#1}
+\end{mdframed}}
+
+
+
+\newcommand{\reply}[1]{
+	\noindent\textbf{Reply:}
+	
+	\begin{mdframed}[style=replies] 
+		#1
+	\end{mdframed}
+}
+
+\newcommand{\changes}[1]{
+	\noindent\textbf{Changes:}
+	\vspace{-5pt}
+	\begin{mdframed}[style=changes] 
+		#1
+\end{mdframed}}
+
+%DIF PREAMBLE EXTENSION ADDED BY LATEXDIFF
+%DIF UNDERLINE PREAMBLE %DIF PREAMBLE
+\RequirePackage[normalem]{ulem} %DIF PREAMBLE
+\RequirePackage{color}\definecolor{RED}{rgb}{1,0,0}\definecolor{BLUE}{rgb}{0,0,1} %DIF PREAMBLE
+\providecommand{\DIFaddtex}[1]{{\protect\color{blue}\uwave{#1}}} %DIF PREAMBLE
+\providecommand{\DIFdeltex}[1]{{\protect\color{red}\sout{#1}}}                      %DIF PREAMBLE
+%DIF SAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddbegin}{} %DIF PREAMBLE
+\providecommand{\DIFaddend}{} %DIF PREAMBLE
+\providecommand{\DIFdelbegin}{} %DIF PREAMBLE
+\providecommand{\DIFdelend}{} %DIF PREAMBLE
+\providecommand{\DIFmodbegin}{} %DIF PREAMBLE
+\providecommand{\DIFmodend}{} %DIF PREAMBLE
+%DIF FLOATSAFE PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFaddFL}[1]{\DIFadd{#1}} %DIF PREAMBLE
+\providecommand{\DIFdelFL}[1]{\DIFdel{#1}} %DIF PREAMBLE
+\providecommand{\DIFaddbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFaddendFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelbeginFL}{} %DIF PREAMBLE
+\providecommand{\DIFdelendFL}{} %DIF PREAMBLE
+%DIF HYPERREF PREAMBLE %DIF PREAMBLE
+\providecommand{\DIFadd}[1]{\texorpdfstring{\DIFaddtex{#1}}{#1}} %DIF PREAMBLE
+\providecommand{\DIFdel}[1]{\texorpdfstring{\DIFdeltex{#1}}{}} %DIF PREAMBLE
+\newcommand{\DIFscaledelfig}{0.5}
+%DIF HIGHLIGHTGRAPHICS PREAMBLE %DIF PREAMBLE
+\RequirePackage{settobox} %DIF PREAMBLE
+\RequirePackage{letltxmacro} %DIF PREAMBLE
+\newsavebox{\DIFdelgraphicsbox} %DIF PREAMBLE
+\newlength{\DIFdelgraphicswidth} %DIF PREAMBLE
+\newlength{\DIFdelgraphicsheight} %DIF PREAMBLE
+% store original definition of \includegraphics %DIF PREAMBLE
+\LetLtxMacro{\DIFOincludegraphics}{\includegraphics} %DIF PREAMBLE
+\newcommand{\DIFaddincludegraphics}[2][]{{\color{blue}\fbox{\DIFOincludegraphics[#1]{#2}}}} %DIF PREAMBLE
+\newcommand{\DIFdelincludegraphics}[2][]{% %DIF PREAMBLE
+	\sbox{\DIFdelgraphicsbox}{\DIFOincludegraphics[#1]{#2}}% %DIF PREAMBLE
+	\settoboxwidth{\DIFdelgraphicswidth}{\DIFdelgraphicsbox} %DIF PREAMBLE
+	\settoboxtotalheight{\DIFdelgraphicsheight}{\DIFdelgraphicsbox} %DIF PREAMBLE
+	\scalebox{\DIFscaledelfig}{% %DIF PREAMBLE
+		\parbox[b]{\DIFdelgraphicswidth}{\usebox{\DIFdelgraphicsbox}\\[-\baselineskip] \rule{\DIFdelgraphicswidth}{0em}}\llap{\resizebox{\DIFdelgraphicswidth}{\DIFdelgraphicsheight}{% %DIF PREAMBLE
+				\setlength{\unitlength}{\DIFdelgraphicswidth}% %DIF PREAMBLE
+				\begin{picture}(1,1)% %DIF PREAMBLE
+					\thicklines\linethickness{2pt} %DIF PREAMBLE
+					{\color[rgb]{1,0,0}\put(0,0){\framebox(1,1){}}}% %DIF PREAMBLE
+					{\color[rgb]{1,0,0}\put(0,0){\line( 1,1){1}}}% %DIF PREAMBLE
+					{\color[rgb]{1,0,0}\put(0,1){\line(1,-1){1}}}% %DIF PREAMBLE
+				\end{picture}% %DIF PREAMBLE
+			}\hspace*{3pt}}} %DIF PREAMBLE
+} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbegin}{\DIFaddbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddend}{\DIFaddend} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbegin}{\DIFdelbegin} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelend}{\DIFdelend} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbegin}{\DIFOaddbegin \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbegin}{\DIFOdelbegin \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelend}{\DIFOaddend \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddbeginFL}{\DIFaddbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOaddendFL}{\DIFaddendFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelbeginFL}{\DIFdelbeginFL} %DIF PREAMBLE
+\LetLtxMacro{\DIFOdelendFL}{\DIFdelendFL} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddbeginFL}{\DIFOaddbeginFL \let\includegraphics\DIFaddincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFaddendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelbeginFL}{\DIFOdelbeginFL \let\includegraphics\DIFdelincludegraphics} %DIF PREAMBLE
+\DeclareRobustCommand{\DIFdelendFL}{\DIFOaddendFL \let\includegraphics\DIFOincludegraphics} %DIF PREAMBLE
+%DIF LISTINGS PREAMBLE %DIF PREAMBLE
+\RequirePackage{listings} %DIF PREAMBLE
+\RequirePackage{color} %DIF PREAMBLE
+\lstdefinelanguage{DIFcode}{ %DIF PREAMBLE
+	%DIF DIFCODE_UNDERLINE %DIF PREAMBLE
+	moredelim=[il][\color{red}\sout]{\%DIF\ <\ }, %DIF PREAMBLE
+	moredelim=[il][\color{blue}\uwave]{\%DIF\ >\ } %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstdefinestyle{DIFverbatimstyle}{ %DIF PREAMBLE
+	language=DIFcode, %DIF PREAMBLE
+	basicstyle=\ttfamily, %DIF PREAMBLE
+	columns=fullflexible, %DIF PREAMBLE
+	keepspaces=true %DIF PREAMBLE
+} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim}{\lstset{style=DIFverbatimstyle}}{} %DIF PREAMBLE
+\lstnewenvironment{DIFverbatim*}{\lstset{style=DIFverbatimstyle,showspaces=true}}{} %DIF PREAMBLE
+%DIF END PREAMBLE EXTENSION ADDED BY LATEXDIFF
